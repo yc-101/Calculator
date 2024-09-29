@@ -3,7 +3,6 @@
 #include "main.h"
 
 #include <sstream>	//istringstream https://www.twblogs.net/a/5b8a17392b71775d1ce55f47
-#include<Windows.h>
 using namespace std;
 
 
