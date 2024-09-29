@@ -27,7 +27,7 @@ int getPriority(char cmd)
 	{
 	case ','://Power(a,b)
 		return 1;
-	case '+'://**¥[´î & ¥¿­t¸¹ ªº°Ï¤À?
+	case '+'://**åŠ æ¸› & æ­£è² è™Ÿ çš„å€åˆ†?
 	case '-':
 		return 2;
 	case '*':
@@ -49,14 +49,14 @@ int getPriority(char cmd)
 BigInt process(string s)
 {
 	string infix;
-	//²M°£ªÅ®æ
+	//æ¸…é™¤ç©ºæ ¼
 	//infix.erase(std::remove(infix.begin(), infix.end(), ' '), infix.end());//remove space ' '
 	for (int i = 0; i < s.length(); i++)
 		if (s[i] != ' ')
 			infix += s[i];
 
 	//-------------------------------------------
-	// ¤¤±Ô¦¡ -> «á§Ç¦¡ <Infix to Postfix>
+	// ä¸­æ•˜å¼ -> å¾Œåºå¼ <Infix to Postfix>
 	//-------------------------------------------
 	BigInt nowVar;//an number to save into stack
 	nowVar.sign = 0;
@@ -64,7 +64,7 @@ BigInt process(string s)
 	BigInt now;//an operation to save into stack
 	now.sign = 0;
 	now.type = 2;
-	bool isNegative = false;	//°Ï§O­t¸¹&´î¸¹¥Î
+	bool isNegative = false;	//å€åˆ¥è² è™Ÿ&æ¸›è™Ÿç”¨
 	bool doPower = false;
 	bool check = false;
 
@@ -83,7 +83,7 @@ BigInt process(string s)
 			stack.push_back(now);
 			break;
 
-		case')': //¤@ª½°µ¨ì¾ã­Ó¬A¸¹¥]§¹
+		case')': //ä¸€ç›´åšåˆ°æ•´å€‹æ‹¬è™ŸåŒ…å®Œ
 			while (stack.size() > 0)
 			{
 				if (stack.back().digits == "(")
@@ -101,9 +101,9 @@ BigInt process(string s)
 
 		default:
 			int priority = getPriority(infix[i]);
-			if (priority > 0)	//¤£¬O¼Æ¦r
+			if (priority > 0)	//ä¸æ˜¯æ•¸å­—
 			{
-				if ((infix[i] == '+' || infix[i] == '-') && (i == 0 || getPriority(infix[i - 1]) != 0)) //«e¤@­Ó¤£¬O¼Æ¦r or ³o¦b¦¡¤l³Ì«e­±¡A³o´N¬O­t¸¹
+				if ((infix[i] == '+' || infix[i] == '-') && (i == 0 || getPriority(infix[i - 1]) != 0)) //å‰ä¸€å€‹ä¸æ˜¯æ•¸å­— or é€™åœ¨å¼å­æœ€å‰é¢ï¼Œé€™å°±æ˜¯è² è™Ÿ
 				{
 					if (i > 2 && infix[i - 1] != '(' && infix[i - 2] != '(') {
 						break;
@@ -114,7 +114,7 @@ BigInt process(string s)
 							isNegative = 0;
 						else
 							isNegative = 1;
-					break;	//Åı­t¸¹¤£·|¦bstack¸Ì­±¡A§PÂ_stack®É¤~¤£·|²V²c­t¸¹&´î¸¹
+					break;	//è®“è² è™Ÿä¸æœƒåœ¨stackè£¡é¢ï¼Œåˆ¤æ–·stackæ™‚æ‰ä¸æœƒæ··æ·†è² è™Ÿ&æ¸›è™Ÿ
 				}
 
 				while (stack.size() > 0)
@@ -125,7 +125,7 @@ BigInt process(string s)
 					if (priority > getPriority(stack.back().digits[0]))
 						break;
 
-					if (priority == 4)//¶¥­¼¬O¥Ñ¥k¦Ü¥ª¹Bºâ(2^3^4 == 2^(3^4))
+					if (priority == 4)//éšä¹˜æ˜¯ç”±å³è‡³å·¦é‹ç®—(2^3^4 == 2^(3^4))
 						break;
 
 					postfix.push_back(stack.back());
@@ -138,12 +138,12 @@ BigInt process(string s)
 			}
 			else
 			{
-				if (i + 1 < infix.length() && getPriority(infix[i + 1]) == 0) //¤U¤@®æ¤]¬O¦P­Ó¼Æ¦r or ­^¤å
+				if (i + 1 < infix.length() && getPriority(infix[i + 1]) == 0) //ä¸‹ä¸€æ ¼ä¹Ÿæ˜¯åŒå€‹æ•¸å­— or è‹±æ–‡
 					nowVar.digits.push_back(infix[i]);
 
-				else { //¤U¤@®æ¤£¬O¼Æ¦r or ­^¤å
+				else { //ä¸‹ä¸€æ ¼ä¸æ˜¯æ•¸å­— or è‹±æ–‡
 					nowVar.digits.push_back(infix[i]);
-					if (nowVar.digits[0] > '9' || nowVar.digits[0] < '0')//¬O¤@­ÓÅÜ¼Æ¦WºÙ or Power
+					if (nowVar.digits[0] > '9' || nowVar.digits[0] < '0')//æ˜¯ä¸€å€‹è®Šæ•¸åç¨± or Power
 					{
 						if (nowVar.digits[0] == 'P' && nowVar.digits[1] == 'o' && nowVar.digits[2] == 'w' && nowVar.digits[3] == 'e' && nowVar.digits[4] == 'r')
 						{
@@ -164,7 +164,7 @@ BigInt process(string s)
 					else
 					{
 						nowVar.dotPlace = nowVar.digits.find('.');
-						if (nowVar.dotPlace == string::npos) //¬O¾ã¼Æ
+						if (nowVar.dotPlace == string::npos) //æ˜¯æ•´æ•¸
 							nowVar.type = 0;
 						else
 							nowVar.type = 1;
@@ -203,9 +203,9 @@ BigInt process(string s)
 	cout << "\n----------------------------------------------------\n";
 
 
-	//cout << "\n-------------------- [¹Bºâ¶i¦æ] --------------------\n";
+	//cout << "\n-------------------- [é‹ç®—é€²è¡Œ] --------------------\n";
 	//-------------------------------------------
-	// ºâ«á§Ç¦¡ <Evaluate Postfix>
+	// ç®—å¾Œåºå¼ <Evaluate Postfix>
 	//-------------------------------------------
 	BigInt ERROR;
 	ERROR.digits = "default";
@@ -215,9 +215,9 @@ BigInt process(string s)
 	{
 		if ((postfix[i].digits == "+") || (postfix[i].digits == "-") || (postfix[i].digits == "*") || (postfix[i].digits == "/") || (postfix[i].digits == "," || (postfix[i].digits == "^")))
 		{
-			//¹Bºâ
+			//é‹ç®—
 			BigInt a, b;
-			if (getPriority(stack.back().digits[0])) //­Ya,b ¤£¬O¼Æ¦r¡A´N¿é¥X¿ù»~
+			if (getPriority(stack.back().digits[0])) //è‹¥a,b ä¸æ˜¯æ•¸å­—ï¼Œå°±è¼¸å‡ºéŒ¯èª¤
 				return ERROR;
 			else
 			{
@@ -278,7 +278,7 @@ BigInt process(string s)
 				{
 					if (a.digits[i] != '0')
 					{
-						cout << "Illegal : ¶¥­¼¹Bºâ¶·¬°©Î¥¿¾ã¼Æ\n½Ğ­«·s¿é¤J : ";
+						cout << "Illegal : éšä¹˜é‹ç®—é ˆç‚ºæˆ–æ­£æ•´æ•¸\nè«‹é‡æ–°è¼¸å…¥ : ";
 						a.digits = "default";
 						a.sign = 0;
 						return a;
@@ -307,7 +307,7 @@ BigInt process(string s)
 		}
 	}
 
-	if (stack.back().getDigits().find('.') == string::npos) //¬O¾ã¼Æ
+	if (stack.back().getDigits().find('.') == string::npos) //æ˜¯æ•´æ•¸
 		stack.back().setType(0);
 	else
 		stack.back().setType(1);
@@ -318,7 +318,7 @@ BigInt process(string s)
 
 void printAllVar()
 {
-	cout << "--------------------¥Ø«e©Ò¦³ÅÜ¼Æ--------------------\n";
+	cout << "--------------------ç›®å‰æ‰€æœ‰è®Šæ•¸--------------------\n";
 	for (auto now : BigInt::All)
 	{
 		cout << now.getName() << " = " << now << endl;

@@ -15,9 +15,9 @@ int main()
 	BigInt temp;
 	string to_process;
 	/*
-		°µ¤@­Óvector¬ö¿ı¥ª¥k¬A©·ªº¦ì¸m¡A
-		¨C¦¸Åª¨ì¥ª¬A©·´Npush_back¨ì[i][0]
-		ª½¨ìÅª¨ì¥k¬A©·¡A¶}©li-- ¨Ãpush_back[i][1]
+		åšä¸€å€‹vectorç´€éŒ„å·¦å³æ‹¬å¼§çš„ä½ç½®ï¼Œ
+		æ¯æ¬¡è®€åˆ°å·¦æ‹¬å¼§å°±push_backåˆ°[i][0]
+		ç›´åˆ°è®€åˆ°å³æ‹¬å¼§ï¼Œé–‹å§‹i-- ä¸¦push_back[i][1]
 	*/
 	/*
 	cout << process("1.5 + 3 * ( -(-5) )") << endl;
@@ -26,19 +26,19 @@ int main()
 	*/
 	cout << "--------------------------------------------\n"
 		<< "| functions:                               |\n"
-		<< "|    ¡P a function with + - * / ( )         |\n"
-		<< "|    ¡P Power(... , ...) or directly use ^  |\n"
+		<< "|    Â· a function with + - * / ( )         |\n"
+		<< "|    Â· Power(... , ...) or directly use ^  |\n"
 		<< "|                                          |\n"
 		<< "| to set variables:                        |\n"
-		<< "|    ¡P Set Integer [VAR_NAME] [VAR]        |\n"
-		<< "|    ¡P Set Decimal [VAR_NAME] [VAR]        |\n"
+		<< "|    Â· Set Integer [VAR_NAME] [VAR]        |\n"
+		<< "|    Â· Set Decimal [VAR_NAME] [VAR]        |\n"
 		<< "|                                          |\n"
 		<< "| to test Integer & Decimal class:         |\n"
-		<< "|    ¡P -T  (cin, cout)                     |\n"
-		<< "|    ¡P -U  (Integer = \"     \")             |\n"
+		<< "|    Â· -T  (cin, cout)                     |\n"
+		<< "|    Â· -U  (Integer = \"     \")             |\n"
 		<< "--------------------------------------------\n\n";
 	printAllVar();
-	cout << "\n¿é¤J¹Bºâ¦¡or³]ÅÜ¼Æ : \n";
+	cout << "\nè¼¸å…¥é‹ç®—å¼orè¨­è®Šæ•¸ : \n";
 
 	while (getline(std::cin, line))
 	{
@@ -62,7 +62,7 @@ int main()
 
 			else
 			{
-				cout << "Illegal : ¥¼¿é¤J¥¿½T Integer or Decimal\n½Ğ­«·s¿é¤J : ";
+				cout << "Illegal : æœªè¼¸å…¥æ­£ç¢º Integer or Decimal\nè«‹é‡æ–°è¼¸å…¥ : ";
 				continue;
 			}
 
@@ -70,7 +70,7 @@ int main()
 			int equalPlace = line.find('=');
 			if (equalPlace == string::npos)
 			{
-				cout << "Illegal : ¥¼¿é¤Jµ¥¸¹\n½Ğ­«·s¿é¤J : ";
+				cout << "Illegal : æœªè¼¸å…¥ç­‰è™Ÿ\nè«‹é‡æ–°è¼¸å…¥ : ";
 				continue;
 			}
 
@@ -95,7 +95,7 @@ int main()
 			}
 			if (temp.getDigits() == "default")
 			{
-				cout << "Illegal : ¥¼¿é¤J¥¿½T¹Bºâ¦¡©ÎÅÜ¼Æ«ü¥O\n½Ğ­«·s¿é¤J : ";
+				cout << "Illegal : æœªè¼¸å…¥æ­£ç¢ºé‹ç®—å¼æˆ–è®Šæ•¸æŒ‡ä»¤\nè«‹é‡æ–°è¼¸å…¥ : ";
 				break;
 			}
 			temp.checkType();
@@ -116,7 +116,7 @@ int main()
 				cout << "\nSet type: " << (temp.getType() == 0 ? "Integer" : "Decimal")
 					<< "\nname: " << temp.getName()
 					<< "\ndigits = " << temp << endl;
-				//cout << "\n-------------------- [¹Bºâµ²§ô] --------------------\n\n";
+				//cout << "\n-------------------- [é‹ç®—çµæŸ] --------------------\n\n";
 				BigInt::All.push_back(temp);
 			}
 		}
@@ -133,14 +133,14 @@ int main()
 			temp = process(i.getDigits()); i = temp;
 			if (temp.getDigits() == "default")
 			{
-				cout << "Illegal : ¥¼¿é¤J¥¿½T¹Bºâ¦¡©ÎÅÜ¼Æ«ü¥O\n½Ğ­«·s¿é¤J : ";
+				cout << "Illegal : æœªè¼¸å…¥æ­£ç¢ºé‹ç®—å¼æˆ–è®Šæ•¸æŒ‡ä»¤\nè«‹é‡æ–°è¼¸å…¥ : ";
 				break;
 			}
 
 			temp = process(d.getDigits()); d = temp;
 			if (temp.getDigits() == "default")
 			{
-				cout << "Illegal : ¥¼¿é¤J¥¿½T¹Bºâ¦¡©ÎÅÜ¼Æ«ü¥O\n½Ğ­«·s¿é¤J : ";
+				cout << "Illegal : æœªè¼¸å…¥æ­£ç¢ºé‹ç®—å¼æˆ–è®Šæ•¸æŒ‡ä»¤\nè«‹é‡æ–°è¼¸å…¥ : ";
 				break;
 			}
 
@@ -158,7 +158,7 @@ int main()
 			vector<BigInt*> nums;
 			nums.push_back(&i);
 			nums.push_back(&d);
-			cout << "--------Ä~©Ó:--------\n";
+			cout << "--------ç¹¼æ‰¿:--------\n";
 			for (const auto& num : nums)
 				cout << *num << endl;
 			cout << "---------------------\n";
@@ -170,13 +170,13 @@ int main()
 			temp = process(i.getDigits()); i = temp;
 			if (temp.getDigits() == "default")
 			{
-				cout << "Illegal : ¥¼¿é¤J¥¿½T¹Bºâ¦¡©ÎÅÜ¼Æ«ü¥O\n½Ğ­«·s¿é¤J : ";
+				cout << "Illegal : æœªè¼¸å…¥æ­£ç¢ºé‹ç®—å¼æˆ–è®Šæ•¸æŒ‡ä»¤\nè«‹é‡æ–°è¼¸å…¥ : ";
 				break;
 			}
 			temp = process(d.getDigits()); d = temp;
 			if (temp.getDigits() == "default")
 			{
-				cout << "Illegal : ¥¼¿é¤J¥¿½T¹Bºâ¦¡©ÎÅÜ¼Æ«ü¥O\n½Ğ­«·s¿é¤J : ";
+				cout << "Illegal : æœªè¼¸å…¥æ­£ç¢ºé‹ç®—å¼æˆ–è®Šæ•¸æŒ‡ä»¤\nè«‹é‡æ–°è¼¸å…¥ : ";
 				break;
 			}
 			cout << "i = " << i << endl
@@ -193,7 +193,7 @@ int main()
 			vector<BigInt*> nums;
 			nums.push_back(&i);
 			nums.push_back(&d);
-			cout << "--------Ä~©Ó:--------\n";
+			cout << "--------ç¹¼æ‰¿:--------\n";
 			for (const auto& num : nums)
 				cout << *num << endl;
 			cout << "---------------------\n";
@@ -210,10 +210,10 @@ int main()
 					to_process = line;
 					//cout << "to_process: " << to_process << endl;
 					temp = process(to_process);
-					//cout << "\n\n-------------------- [¹Bºâµ²§ô] --------------------\n";
+					//cout << "\n\n-------------------- [é‹ç®—çµæŸ] --------------------\n";
 					if (temp.getDigits() == "default")
 					{
-						cout << "Illegal : ¥¼¿é¤J¥¿½T¹Bºâ¦¡©ÎÅÜ¼Æ«ü¥O\n½Ğ­«·s¿é¤J : ";
+						cout << "Illegal : æœªè¼¸å…¥æ­£ç¢ºé‹ç®—å¼æˆ–è®Šæ•¸æŒ‡ä»¤\nè«‹é‡æ–°è¼¸å…¥ : ";
 						chk = 0;
 					}
 					else
@@ -225,7 +225,7 @@ int main()
 				}
 			}
 			if (chk == 0) {
-				cout << "Illegal : ¥¼¿é¤J¥¿½T¹Bºâ¦¡©ÎÅÜ¼Æ«ü¥O\n½Ğ­«·s¿é¤J : ";
+				cout << "Illegal : æœªè¼¸å…¥æ­£ç¢ºé‹ç®—å¼æˆ–è®Šæ•¸æŒ‡ä»¤\nè«‹é‡æ–°è¼¸å…¥ : ";
 				continue;
 			}
 		}
@@ -238,10 +238,10 @@ int main()
 			temp = process(to_process);
 			if (temp.getDigits() == "default")
 			{
-				cout << "Illegal : ¥¼¿é¤J¥¿½T¹Bºâ¦¡©ÎÅÜ¼Æ«ü¥O\n½Ğ­«·s¿é¤J : ";
+				cout << "Illegal : æœªè¼¸å…¥æ­£ç¢ºé‹ç®—å¼æˆ–è®Šæ•¸æŒ‡ä»¤\nè«‹é‡æ–°è¼¸å…¥ : ";
 				continue;
 			}
-			//cout << "\n\n-------------------- [¹Bºâµ²§ô] --------------------\n";
+			//cout << "\n\n-------------------- [é‹ç®—çµæŸ] --------------------\n";
 			cout << endl << "Ans : " << temp << endl << endl;
 		}
 		cout << "[enter to continue]\n";
@@ -251,30 +251,30 @@ int main()
 
 		cout << "--------------------------------------------\n"
 			<< "| functions:                               |\n"
-			<< "|    ¡P a function with + - * / ( )         |\n"
-			<< "|    ¡P Power(... , ...) or directly use ^  |\n"
+			<< "|    Â· a function with + - * / ( )         |\n"
+			<< "|    Â· Power(... , ...) or directly use ^  |\n"
 			<< "|                                          |\n"
 			<< "| to set variables:                        |\n"
-			<< "|    ¡P Set Integer [VAR_NAME] [VAR]        |\n"
-			<< "|    ¡P Set Decimal [VAR_NAME] [VAR]        |\n"
+			<< "|    Â· Set Integer [VAR_NAME] [VAR]        |\n"
+			<< "|    Â· Set Decimal [VAR_NAME] [VAR]        |\n"
 			<< "|                                          |\n"
 			<< "| to test Integer & Decimal class:         |\n"
-			<< "|    ¡P -T  (cin, cout)                     |\n"
-			<< "|    ¡P -U  (Integer = \"     \")             |\n"
+			<< "|    Â· -T  (cin, cout)                     |\n"
+			<< "|    Â· -U  (Integer = \"     \")             |\n"
 			<< "--------------------------------------------\n\n";
 		printAllVar();
-		cout << "\n¿é¤J¹Bºâ¦¡or³]ÅÜ¼Æ : \n";
+		cout << "\nè¼¸å…¥é‹ç®—å¼orè¨­è®Šæ•¸ : \n";
 	}
 
 	//process("1.5 + 3 * (6 + 7)"); // 1.5 3 6 7 + * +
 	//cout << process("1.5 + 3 * (-(-5))");
 }
 
-//=======¨S¹Lªº´ú¸ê=======
+//=======æ²’éçš„æ¸¬è³‡=======
 
 //6-(-(-7))
 
-//========¹Lªº´ú¸ê========
+//========éçš„æ¸¬è³‡========
 //3-(2-1)
 //1.5+3*(6-(-7))
 //-3+3

@@ -29,25 +29,25 @@ BigInt BigInt::operator+(const BigInt rhs) const
 	string ansDigits = "";
 	int ansDotPlace;
 
-	if (sign == 0 && rhs.sign == 0) {		// ¥¿+¥¿
+	if (sign == 0 && rhs.sign == 0) {		// æ­£+æ­£
 		ansDigits = addition(digits, rhs.digits);
 		ansSign = 0;
 
 	}
-	else if (sign == 1 && rhs.sign == 1) {		// ­t+­t
+	else if (sign == 1 && rhs.sign == 1) {		// è² +è² 
 		string a = digits;
 		//a.erase(0, 1);
 		string b = rhs.digits;
 		//b.erase(0, 1);
-		ansDigits = addition(a, b);		// ¥H¥¿+¥¿¥h¹Bºâ
-		//ansDigits = '-' + ansDigits;		// §â­t¸¹¥[¦^¨Ó
+		ansDigits = addition(a, b);		// ä»¥æ­£+æ­£å»é‹ç®—
+		//ansDigits = '-' + ansDigits;		// æŠŠè² è™ŸåŠ å›ä¾†
 		ansSign = 1;
 	}
 	else {
-		if (sign == 0 && rhs.sign == 1) {		// ¥¿+­t = ¥¿-¥¿
+		if (sign == 0 && rhs.sign == 1) {		// æ­£+è²  = æ­£-æ­£
 			ansDigits = subtraction(digits, rhs.digits);
 		}
-		else {		//sign == 1 && rhs.sign == 0		//­t+¥¿ = ¥¿-¥¿
+		else {		//sign == 1 && rhs.sign == 0		//è² +æ­£ = æ­£-æ­£
 			ansDigits = subtraction(rhs.digits, digits);
 		}
 		if (ansDigits[0] == '-') {
@@ -81,7 +81,7 @@ BigInt BigInt::operator-(const BigInt rhs) const
 	string ansDigits = "";
 	int ansDotPlace;
 
-	if (sign == 0 && rhs.sign == 0) {		// ¥¿-¥¿
+	if (sign == 0 && rhs.sign == 0) {		// æ­£-æ­£
 		ansDigits = subtraction(digits, rhs.digits);
 		if (ansDigits[0] == '-') {
 			ansSign = 1;
@@ -98,18 +98,18 @@ BigInt BigInt::operator-(const BigInt rhs) const
 			ansType = 0;
 		}
 	}
-	else if (sign == 1 && rhs.sign == 1) {		// ­t-­t = ­t(¥¿-¥¿)
+	else if (sign == 1 && rhs.sign == 1) {		// è² -è²  = è² (æ­£-æ­£)
 		string a = digits;
 		//a.erase(0, 1);
 		string b = rhs.digits;
 		//b.erase(0, 1);
-		ansDigits = subtraction(a, b);		// ¥H¥¿-¥¿¥h¹Bºâ
+		ansDigits = subtraction(a, b);		// ä»¥æ­£-æ­£å»é‹ç®—
 		if (ansDigits[0] == '-') {
-			ansDigits.erase(0, 1);			// §â­t¸¹¥h±¼
+			ansDigits.erase(0, 1);			// æŠŠè² è™Ÿå»æ‰
 			ansSign = 0;
 		}
 		else {
-			//ansDigits = '-' + ansDigits;		// §â­t¸¹¥[¦^¨Ó
+			//ansDigits = '-' + ansDigits;		// æŠŠè² è™ŸåŠ å›ä¾†
 			ansSign = 1;
 		}
 
@@ -129,11 +129,11 @@ BigInt BigInt::operator-(const BigInt rhs) const
 		if (b[0] == '-')
 			b.erase(0, 1);
 
-		if (sign == 0 && rhs.sign == 1) {		// ¥¿-­t = ¥¿+¥¿
+		if (sign == 0 && rhs.sign == 1) {		// æ­£-è²  = æ­£+æ­£
 			ansDigits = addition(a, b);
 			ansSign = 0;
 		}
-		else {		//sign == 1 && rhs.sign == 0		//­t-¥¿ = ­t(¥¿+¥¿)
+		else {		//sign == 1 && rhs.sign == 0		//è² -æ­£ = è² (æ­£+æ­£)
 			ansDigits = addition(a, b);
 			//ansDigits = '-' + ansDigits;
 			ansSign = 1;
@@ -235,7 +235,7 @@ BigInt BigInt::operator*(const BigInt rhs) const
 
 
 		// ignore 0s from the right
-		//digits.length()-digits.dotPlace = ¤p¼Æªø«×
+		//digits.length()-digits.dotPlace = å°æ•¸é•·åº¦
 		int q = res.size() - 1;
 		if (c.type == 1)
 		{
@@ -255,7 +255,7 @@ BigInt BigInt::operator*(const BigInt rhs) const
 				ans += to_string(res[q--]);
 		}
 
-		//¶i¦ì overflow
+		//é€²ä½ overflow
 
 		if (ans.find('.') != string::npos)
 		{
@@ -279,7 +279,7 @@ BigInt BigInt::operator*(const BigInt rhs) const
 
 }
 
-//  (1 / 3) * 3 = 1 -> ¥ı­¼«á°£(process ¸Ì­±§PÂ_)
+//  (1 / 3) * 3 = 1 -> å…ˆä¹˜å¾Œé™¤(process è£¡é¢åˆ¤æ–·)
 BigInt BigInt::operator/(const BigInt rhs) const	// (digit - '0') / (rhs.digit - '0') -> A / B
 {
 	BigInt c;
@@ -293,12 +293,12 @@ BigInt BigInt::operator/(const BigInt rhs) const	// (digit - '0') / (rhs.digit -
 	ten.type = 0;
 	ten.dotPlace = string::npos;
 
-	c.setSign(!(sign == rhs.sign));	// ¥¿­t¼Æ
+	c.setSign(!(sign == rhs.sign));	// æ­£è² æ•¸
 	c.setType(type || rhs.type);
 
 	if (rhs.compare("0") == 0)
 	{
-		c.digits = "default";		// ¿ù»~
+		c.digits = "default";		// éŒ¯èª¤
 		return c;
 	}
 	if (this->compare("0") == 0)
@@ -317,7 +317,7 @@ BigInt BigInt::operator/(const BigInt rhs) const	// (digit - '0') / (rhs.digit -
 		return c;
 	c.digits += '.';		// now ansDigits = 52.
 	int now;
-	for (int i = 0; i < 100; i++)	//°µ¨ìansDigits¤p¼Æ¦³¤@¦Ê¦ì
+	for (int i = 0; i < 100; i++)	//åšåˆ°ansDigitså°æ•¸æœ‰ä¸€ç™¾ä½
 	{
 		now = 0;
 		remain = remain * ten;
@@ -344,7 +344,7 @@ BigInt BigInt::operator^(BigInt rhs) const
 	one.dotPlace = string::npos;
 
 	BigInt ans = one;
-	//b ¥u¦³¥i¯à¬O 0.5 ªº¾ã¼Æ­¿
+	//b åªæœ‰å¯èƒ½æ˜¯ 0.5 çš„æ•´æ•¸å€
 
 	while (rhs.compare("1") >= 0)
 	{
@@ -373,7 +373,7 @@ BigInt BigInt::operator^(BigInt rhs) const
 	return ans;
 }
 
-string addition(string A, string B)		// ³£·|¬O¥¿+¥¿ (¦ı¥i¯à¦³¤p¼Æ)
+string addition(string A, string B)		// éƒ½æœƒæ˜¯æ­£+æ­£ (ä½†å¯èƒ½æœ‰å°æ•¸)
 {
 	int dot1 = A.find('.');
 	int dot2 = B.find('.');
@@ -382,10 +382,10 @@ string addition(string A, string B)		// ³£·|¬O¥¿+¥¿ (¦ı¥i¯à¦³¤p¼Æ)
 	int dot;
 	int base = '0';
 
-	if (dot1 == std::string::npos && dot2 == std::string::npos)		// ¾ã¼Æ + ¾ã¼Æ
+	if (dot1 == std::string::npos && dot2 == std::string::npos)		// æ•´æ•¸ + æ•´æ•¸
 	{
 		dot = dot1;
-		// ¸É»ô¾ã¼Æ
+		// è£œé½Šæ•´æ•¸
 		while (A.length() < B.length())
 			A = '0' + A;
 
@@ -393,10 +393,10 @@ string addition(string A, string B)		// ³£·|¬O¥¿+¥¿ (¦ı¥i¯à¦³¤p¼Æ)
 			B = '0' + B;
 
 	}
-	else if (dot1 == std::string::npos) //¾ã¼Æ + ¤p¼Æ
+	else if (dot1 == std::string::npos) //æ•´æ•¸ + å°æ•¸
 	{
 		dot = (dot2 > A.length()) ? dot2 : A.length();
-		// ¸É»ô¾ã¼Æ
+		// è£œé½Šæ•´æ•¸
 		while (dot2 < dot)
 		{
 			B = '0' + B;
@@ -405,16 +405,16 @@ string addition(string A, string B)		// ³£·|¬O¥¿+¥¿ (¦ı¥i¯à¦³¤p¼Æ)
 		while (A.length() < dot)
 			A = '0' + A;
 
-		//¸É»ô¤p¼Æ
+		//è£œé½Šå°æ•¸
 		A += '.';
 		while (A.length() < B.length())
 			A += '0';
 
 	}
-	else if (dot2 == std::string::npos) //¤p¼Æ + ¾ã¼Æ
+	else if (dot2 == std::string::npos) //å°æ•¸ + æ•´æ•¸
 	{
 		dot = (dot1 > B.length()) ? dot1 : B.length();
-		// ¸É»ô¾ã¼Æ
+		// è£œé½Šæ•´æ•¸
 		while (dot1 < dot)
 		{
 			A = '0' + A;
@@ -423,15 +423,15 @@ string addition(string A, string B)		// ³£·|¬O¥¿+¥¿ (¦ı¥i¯à¦³¤p¼Æ)
 		while (B.length() < dot)
 			B = '0' + B;
 
-		//¸É»ô¤p¼Æ
+		//è£œé½Šå°æ•¸
 		B += '.';
 		while (B.length() < A.length())
 			B += '0';
 	}
-	else 								// ¤p¼Æ + ¤p¼Æ eg: 123.3457 + 67.891
+	else 								// å°æ•¸ + å°æ•¸ eg: 123.3457 + 67.891
 	{
 		dot = max(dot1, dot2);
-		//¸É»ô¾ã¼Æ
+		//è£œé½Šæ•´æ•¸
 		while (dot1 < dot2)
 		{
 			A = '0' + A;
@@ -442,7 +442,7 @@ string addition(string A, string B)		// ³£·|¬O¥¿+¥¿ (¦ı¥i¯à¦³¤p¼Æ)
 			B = '0' + B;
 			dot2++;
 		}
-		//¸É»ô¤p¼Æ
+		//è£œé½Šå°æ•¸
 		while (A.length() < B.length())
 			A += '0';
 
@@ -450,11 +450,11 @@ string addition(string A, string B)		// ³£·|¬O¥¿+¥¿ (¦ı¥i¯à¦³¤p¼Æ)
 			B += '0';
 	}
 
-	len = A.length();	//A.len == B.len¡A©Ò¥H¤£¥Î¤ñ¸û
+	len = A.length();	//A.len == B.lenï¼Œæ‰€ä»¥ä¸ç”¨æ¯”è¼ƒ
 	int temp;
 	if (dot != string::npos)
 	{
-		for (int i = len - 1; i > dot; i--)//¤p¼Æ³¡¤À
+		for (int i = len - 1; i > dot; i--)//å°æ•¸éƒ¨åˆ†
 		{
 			temp = A[i] + B[i] - 2 * base + carry;
 			carry = temp / 10;
@@ -464,7 +464,7 @@ string addition(string A, string B)		// ³£·|¬O¥¿+¥¿ (¦ı¥i¯à¦³¤p¼Æ)
 	else
 		dot = len;
 
-	for (int i = dot - 1; i >= 0; i--)//¾ã¼Æ³¡¤À
+	for (int i = dot - 1; i >= 0; i--)//æ•´æ•¸éƒ¨åˆ†
 	{
 		temp = A[i] + B[i] - 2 * base + carry;
 		carry = temp / 10;
@@ -478,7 +478,7 @@ string addition(string A, string B)		// ³£·|¬O¥¿+¥¿ (¦ı¥i¯à¦³¤p¼Æ)
 	return A;
 }
 
-string subtraction(string A, string B)		// ³£·|¬O¥¿-¥¿ (¦ı¥i¯à¦³¤p¼Æ)
+string subtraction(string A, string B)		// éƒ½æœƒæ˜¯æ­£-æ­£ (ä½†å¯èƒ½æœ‰å°æ•¸)
 {
 	int dot1 = A.find('.');
 	int dot2 = B.find('.');
@@ -490,10 +490,10 @@ string subtraction(string A, string B)		// ³£·|¬O¥¿-¥¿ (¦ı¥i¯à¦³¤p¼Æ)
 	string ans = "";
 	char ansSign;
 
-	if (dot1 != std::string::npos && dot2 != std::string::npos)	//¤p¼Æ - ¤p¼Æ
+	if (dot1 != std::string::npos && dot2 != std::string::npos)	//å°æ•¸ - å°æ•¸
 	{
 		dot = max(dot1, dot2);
-		//¸É»ô¾ã¼Æ
+		//è£œé½Šæ•´æ•¸
 		while (dot1 < dot2)
 		{
 			A = '0' + A;
@@ -504,23 +504,23 @@ string subtraction(string A, string B)		// ³£·|¬O¥¿-¥¿ (¦ı¥i¯à¦³¤p¼Æ)
 			B = '0' + B;
 			dot2++;
 		}
-		//¸É»ô¤p¼Æ
+		//è£œé½Šå°æ•¸
 		while (A.length() < B.length())
 			A += '0';
 		while (B.length() < A.length())
 			B += '0';
 	}
-	else if (dot1 == std::string::npos && dot2 == std::string::npos)		// ¾ã¼Æ - ¾ã¼Æ
+	else if (dot1 == std::string::npos && dot2 == std::string::npos)		// æ•´æ•¸ - æ•´æ•¸
 	{
 		while (A.length() < B.length())
 			A = '0' + A;
 		while (B.length() < A.length())
 			B = '0' + B;
 	}
-	else if (dot1 == std::string::npos)	// ¾ã¼Æ - ¤p¼Æ
+	else if (dot1 == std::string::npos)	// æ•´æ•¸ - å°æ•¸
 	{
 		dot = (dot2 > A.length()) ? dot2 : A.length();
-		// ¸É»ô¾ã¼Æ
+		// è£œé½Šæ•´æ•¸
 		while (dot2 < dot)
 		{
 			B = '0' + B;
@@ -529,15 +529,15 @@ string subtraction(string A, string B)		// ³£·|¬O¥¿-¥¿ (¦ı¥i¯à¦³¤p¼Æ)
 		while (A.length() < dot)
 			A = '0' + A;
 
-		//¸É»ô¤p¼Æ
+		//è£œé½Šå°æ•¸
 		A += '.';
 		while (A.length() < B.length())
 			A += '0';
 	}
-	else								// ¤p¼Æ - ¾ã¼Æ
+	else								// å°æ•¸ - æ•´æ•¸
 	{
 		dot = (dot1 > B.length()) ? dot1 : B.length();
-		// ¸É»ô¾ã¼Æ
+		// è£œé½Šæ•´æ•¸
 		while (dot1 < dot)
 		{
 			A = '0' + A;
@@ -546,13 +546,13 @@ string subtraction(string A, string B)		// ³£·|¬O¥¿-¥¿ (¦ı¥i¯à¦³¤p¼Æ)
 		while (B.length() < dot)
 			B = '0' + B;
 
-		//¸É»ô¤p¼Æ
+		//è£œé½Šå°æ•¸
 		B += '.';
 		while (B.length() < A.length())
 			B += '0';
 	}
 
-	//¤ñ¸ûAB
+	//æ¯”è¼ƒAB
 	ansSign = '+';
 
 	for (int i = 0; i < A.length(); i++)
@@ -609,7 +609,7 @@ string subtraction(string A, string B)		// ³£·|¬O¥¿-¥¿ (¦ı¥i¯à¦³¤p¼Æ)
 void BigInt::operator=(const BigInt& rhs)
 {
 	type = rhs.type;
-	//name¤£¥Î§ï
+	//nameä¸ç”¨æ”¹
 	digits = rhs.digits;
 	dotPlace = rhs.dotPlace;
 	sign = rhs.sign;
@@ -617,14 +617,14 @@ void BigInt::operator=(const BigInt& rhs)
 
 int BigInt::compare(string B) const
 {
-	//¦^¶Ç: -1:<  0:==  1:>
+	//å›å‚³: -1:<  0:==  1:>
 
 	//if sign is different
 	if (B[0] == '-')
 	{
 		if (sign == 0)
 			return 1;
-		B.erase(0, 1);//®ø¥h­t¸¹¡A¥H«K«á­±§PÂ_
+		B.erase(0, 1);//æ¶ˆå»è² è™Ÿï¼Œä»¥ä¾¿å¾Œé¢åˆ¤æ–·
 	}
 	else if (sign == 1)
 		return -1;
@@ -644,7 +644,7 @@ int BigInt::compare(string B) const
 		dot2 = B.length();
 		B += ".0";
 	}
-	//¸É»ô¾ã¼Æ
+	//è£œé½Šæ•´æ•¸
 	while (dot1 < dot2)
 	{
 		A = '0' + A;
@@ -655,7 +655,7 @@ int BigInt::compare(string B) const
 		B = '0' + B;
 		dot2++;
 	}
-	//¸É»ô¤p¼Æ
+	//è£œé½Šå°æ•¸
 	while (A.length() < B.length())
 		A += '0';
 

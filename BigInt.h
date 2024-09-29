@@ -16,7 +16,7 @@ private:
 
 
 public:
-	static vector<BigInt> All; //¦s©Ò¦³ÅÜ¼Æ
+	static vector<BigInt> All; //å­˜æ‰€æœ‰è®Šæ•¸
 	BigInt() { name = ""; };
 	BigInt(string n) { name = n; };
 	BigInt(bool, string, string);//type, name, digits
@@ -27,7 +27,7 @@ public:
 	void setDotPlace(int _dotPlace) { dotPlace = _dotPlace; }
 	void setName(string _name)
 	{
-		//²M°£ªÅ®æ
+		//æ¸…é™¤ç©ºæ ¼
 		int i = 0;
 		while (_name[i] == ' ')
 			i++;
@@ -66,9 +66,9 @@ public:
 				digits += '.';
 			}
 
-			if (digits.length() - dotPlace - 1 < 100)//¤p¼Æ³¡¤À¤£¨¬100¦ì
+			if (digits.length() - dotPlace - 1 < 100)//å°æ•¸éƒ¨åˆ†ä¸è¶³100ä½
 			{
-				//¸É¨ì100¦ì¼Æ
+				//è£œåˆ°100ä½æ•¸
 				for (int i = digits.length() - dotPlace - 1; i < 100; i++)
 					digits += '0';
 			}
@@ -86,6 +86,6 @@ public:
 	BigInt operator/(BigInt) const;
 	BigInt operator^(BigInt) const;
 	void operator=(const BigInt&);
-	int compare(string) const; //¦^¶Ç: -1:<  0:==  1:>
+	int compare(string) const; //å›žå‚³: -1:<  0:==  1:>
 	friend ostream& operator<<(ostream&, const BigInt&);
 };
